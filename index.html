@@ -216,6 +216,17 @@
 
     <div class="section">
         <div class="content-container">
+            <h5>25% Fracture</h5>
+            <select name="fracture"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,fracture" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
             <h5>Haunted Modifiers</h5>
             <select name="haunted"></select>
         </div>
@@ -332,6 +343,10 @@
         { name: "QUALITY", value: '"+5" "q"' }
     ];
 
+    const Fracture = [
+        { name: "FRACTURE", value: '"25%" "frac"' }
+    ];
+
     const Consumed = [
         { name: "ANY", value: '".exor"' },
         { name: "HUMAN", value: '"hum.*exor"' },
@@ -377,6 +392,7 @@
         populateDropdown('select[name="adjacent"]', Adjacent);
         populateDropdown('select[name="haunted"]', Haunted);
         populateDropdown('select[name="additional"]', Additional);
+        populateDropdown('select[name="fracture"]', Fracture);
         populateDropdown('select[name="consumed"]', Consumed);
 
 
