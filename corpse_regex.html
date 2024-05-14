@@ -1,0 +1,430 @@
+<!-- corpse_regex.html -->
+<html>
+<head>
+    <title>Corpse Regex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <style>
+        header {
+            background-color: #333; /* Dark gray background color */
+            color: #fff; /* White text color */
+            padding: 10px; /* Add padding for spacing */
+        }
+
+        header h1 {
+            font-size: 2em; /* Large font size */
+            margin: 0; /* Remove default margin */
+            font-weight: bold;  
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section {
+            display: flex;
+            align-items: center;
+            padding: 1px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom :0
+        }
+        .section:last-child {
+            border-bottom: none; /* Remove border from the last section */
+        }
+        .section select, .section button {
+            margin-right: 20px;
+            padding: 2px;
+        }
+        .section h5 {
+            margin-right: 10px;
+        }
+        .message {
+            visibility: hidden;
+            color: green;
+            margin-left: 10px;
+        }
+
+        .light-gray-background{
+            background-color: #c0c0c0;
+        }
+        .content-container {
+            display: flex;
+            align-items: center; 
+            width: 500px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff; 
+            padding: 10px; 
+            text-align: left; 
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Corpse Regex v0.1</h1></header>
+    <div class="section light-gray-background">
+        <div class="content-container">
+
+        <h5>Item Level</h5>
+        <select name="item_level" required></select>
+        </div>
+
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section light-gray-background">
+        <h5>Monster Category</h5>
+        <select name="monster_category" required></select>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Modifiers</h5>
+            <select name="mod"></select>
+            <h5>Effect</h5>
+            <select name="add_rem"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,mod,add_rem" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Row Column Effect</h5>
+            <select name="row_col"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,row_col" data-function="formatComplex">Copy</button>     
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        
+        <div class="content-container">
+            <h5>NPCs</h5>
+            <select name="npcs"></select>
+        </div>
+      <div class="button-container">
+        <button onclick="copyData(this)" data-selects="item_level,monster_category,npcs" data-function="formatComplex">Copy</button>
+        <span class="message">Copied!</span>
+      </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Increase Affixes</h5>
+            <select name="affixes"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,affixes" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Explicit +1 / - 1</h5>
+            <select name="explicit"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,explicit" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>+ Modifier Tier</h5>
+            <select name="tier"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,tier" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>+ Item Level</h5>
+            <select name="item_level_mod"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,item_level_mod" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>+ Quality</h5>
+            <select name="quality"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,quality" data-function="formatComplex">Copy</button>          
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Adjacent Corpses</h5>
+            <select name="adjacent"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,adjacent" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Consumed Excorcise</h5>
+            <select name="consumed"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,consumed" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>20% Additional Craft</h5>
+            <select name="additional"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,additional" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content-container">
+            <h5>Haunted Modifiers</h5>
+            <select name="haunted"></select>
+        </div>
+        <div class="button-container">
+            <button onclick="copyData(this)" data-selects="item_level,monster_category,haunted" data-function="formatComplex">Copy</button>
+            <span class="message">Copied!</span>
+        </div>
+    </div>
+
+    <footer>    
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#de9516', 'Z8Z7Y38YY');kofiwidget2.draw();</script> 
+        <small>This site is fan-made and not affiliated with Grinding Gear Games in any way.</small>
+    </footer>
+
+
+    <script>
+        const ItemLevel = [
+        { name: "ANY", value: "" },
+        { name: "ILVL80+", value: '"level: 8[0-9]"' },
+        { name: "ILVL70+", value: '"level: 7[0-9]"' }
+    ];
+
+    const MonsterCategory = [
+        { name: "ANY", value: '"cat.*: *"' },
+        { name: "HUMANOID", value: '"cat.*: hum"' },
+        { name: "UNDEAD", value: '"cat.*: und"' },
+        { name: "BEAST", value: '"cat.*: bea"' },
+        { name: "DEMON", value: '"cat.*: dem"' },
+        { name: "CONSTRUCT", value: '"cat.*: const"' }
+    ];
+
+    const Mod = [
+        { name: "ATTACK", value: '"attack"' },
+        { name: "ATTRIBUTE", value: '"attr"' },
+        { name: "CASTER", value: '"caster"' },
+        { name: "CHAOS", value: '"chaos"' },
+        { name: "COLD", value: '"cold"' },
+        { name: "CRITICAL", value: '"crit"' },
+        { name: "DEFENCE", value: '"def"' },
+        { name: "ELEMENTAL", value: '"ele"' },
+        { name: "FIRE", value: '"fire"' },
+        { name: "GEM", value: '"gem"' },
+        { name: "LIFE", value: '"life"' },
+        { name: "LIGHTNING", value: '"light"' },
+        { name: "MANA", value: '"mana"' },
+        { name: "MINION", value: '"minion"' },
+        { name: "PHYSICAL", value: '"phys"' },
+        { name: "RESISTANCE", value: '"resist"' },
+        { name: "SPEED", value: '"speed"' }
+    ];
+
+    const Haunted = [
+        { name: "HAUNTED", value: '"haunted mod"' }
+        ];
+
+    const AddRem = [
+        { name: "INCREASE", value: '"inc"' },
+        { name: "SCARCER", value: '"scar"' }
+    ];
+
+    const RowCol = [
+        { name: "ROW", value: '"grave row"' },
+        { name: "COLUMN", value: '"grave col"' }
+    ];
+
+    const NPC = [
+        { name: "ANY", value: "haunted by" },
+        { name: "Albanus", value: '"alba"' },
+        { name: "Asinia", value: '"asin"' },
+        { name: "Claudia", value: '"clau"' },
+        { name: "Draven", value: '"drav"' },
+        { name: "Drusia", value: '"drus"' },
+        { name: "Fabricia", value: '"fabr"' },
+        { name: "Fausta", value: '"faus"' },
+        { name: "Hadrius", value: '"hadr"' },
+        { name: "Iris", value: '"iris"' },
+        { name: "Julianis", value: '"juli"' },
+        { name: "Kostian", value: '"kost"' },
+        { name: "Legius", value: '"legi"' },
+        { name: "Lilius", value: '"lili"' },
+        { name: "Lucillus", value: '"luci"' },
+        { name: "Marius", value: '"mari"' },
+        { name: "Octavius", value: '"octa"' },
+        { name: "Quintio", value: '"quint"' },
+        { name: "Titiana", value: '"titi"' },
+        { name: "Tyche", value: '"tyche"' },
+        { name: "Valerius", value: '"vale"' }
+    ];
+
+    const Affix = [
+        { name: "PREFIX", value: '"prefix"' },
+        { name: "SUFFIX", value: '"suffix"' }
+    ];
+
+    const Explicit = [
+        { name: "ADD", value: '"+1" "explicit"' },
+        { name: "MINUS", value: '"-1" "explicit"' }
+    ];
+
+    const Tier = [
+        { name: "TIER", value: '"+50" "tier"' }
+    ];
+
+    const Additional = [
+        { name: "ADDITIONAL", value: '"craft"' }
+    ];
+
+    const ItemLevelMod = [
+        { name: "ITEMLEVEL", value: '"+1" "item level"' }
+    ];
+
+    const Quality = [
+        { name: "QUALITY", value: '"+5" "q"' }
+    ];
+
+    const Consumed = [
+        { name: "ANY", value: '".exor"' },
+        { name: "HUMAN", value: '"hum.*exor"' },
+        { name: "UNDEAD", value: '"und.*exor"' },
+        { name: "BEAST", value: '"bea.*exor"' },
+        { name: "DEMON", value: '"dem.*exor"' },
+        { name: "CONSTRUCT", value: '"const.*exor"' }
+    ];
+
+    const Adjacent = [
+        { name: "ANY", value: '"of.*adj.* to"' },
+        { name: "HUMAN", value: '"of.*hum.*adj.* to"' },
+        { name: "UNDEAD", value: '"of.*und.*adj.* to"' },
+        { name: "BEAST", value: '"of.*bea.*adj.* to"' },
+        { name: "DEMON", value: '"of.*dem.*adj.* to"' },
+        { name: "CONSTRUCT", value: '"of.*const.*adj.* to"' }
+    ];
+
+
+
+    function populateDropdown(selector, options) {
+        const selectElement = document.querySelector(selector);
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option.value;
+            opt.textContent = option.name;
+            selectElement.appendChild(opt);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        populateDropdown('select[name="item_level"]', ItemLevel);
+        populateDropdown('select[name="monster_category"]', MonsterCategory);
+        populateDropdown('select[name="mod"]', Mod);
+        populateDropdown('select[name="add_rem"]', AddRem);
+        populateDropdown('select[name="row_col"]', RowCol);
+        populateDropdown('select[name="npcs"]', NPC);
+        populateDropdown('select[name="affixes"]', Affix);
+        populateDropdown('select[name="explicit"]', Explicit);
+        populateDropdown('select[name="tier"]', Tier);
+        populateDropdown('select[name="item_level_mod"]', ItemLevelMod);
+        populateDropdown('select[name="quality"]', Quality);
+        populateDropdown('select[name="adjacent"]', Adjacent);
+        populateDropdown('select[name="haunted"]', Haunted);
+        populateDropdown('select[name="additional"]', Additional);
+        populateDropdown('select[name="consumed"]', Consumed);
+
+
+        // Add this event listener
+        document.querySelector('select[name="item_level"]').addEventListener('change', function() {
+            toggleItemLevelCopyButton();
+        });
+
+        // Initial toggle on page load
+        toggleItemLevelCopyButton();
+    });
+
+    function copyData(button) {
+        const selects = button.getAttribute('data-selects').split(',');
+        const funcName = button.getAttribute('data-function');
+        const values = selects.map(selectName => getSelectedValue(selectName.trim()));
+        const finalString = window[funcName](values); // Call the function dynamically
+        const messageElement = button.nextElementSibling; // Directly next to the button
+        copyToClipboard(finalString, messageElement);
+    }
+
+    function formatSingle(values) {
+        return values[0];
+    }
+
+    function formatComplex(values) {
+        // Join all values with a space or any other delimiter as needed
+        return values.join(' ');
+    }
+
+    function toggleItemLevelCopyButton() {
+        const itemLevelSelect = document.querySelector('select[name="item_level"]');
+        const sectionDiv = itemLevelSelect.closest('.section'); // Find the nearest parent with class 'section'
+        const copyButton = sectionDiv.querySelector('button'); // Find the first button within that section
+
+        if (itemLevelSelect.value === "") {
+            copyButton.style.display = 'none';
+        } else {
+            copyButton.style.display = 'inline-block';
+        }
+    }
+
+    function getSelectedValue(selectName) {
+        return document.querySelector(`select[name="${selectName}"]`).value;
+    }
+
+    function copyToClipboard(textToCopy, messageElement) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            messageElement.style.visibility = 'visible';
+            setTimeout(() => {
+                messageElement.style.visibility = 'hidden';
+            }, 2000); 
+        });
+    }
+
+    </script>
+
+
+
+</body>
+</html>
